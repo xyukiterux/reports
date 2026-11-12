@@ -27,7 +27,7 @@ Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no
 | `12_diamond_economy.csv` | Diamond income by source, paid cards, VIP daily gifts, buy/skip verdicts, pull costs and Stronghold pay. Includes a NOT KNOWN YET list. | 45 | Org guide (xyukiterux.github.io/guides) economy data (as of 2026-11-04) |
 | `13_creator_meta_teams.csv` | Team screens from creator videos, Dec 2025 to Oct 2026, one row per team, with the video link at the exact second. | 33 | Creator YouTube videos, read card by card against the game portraits |
 | `14_game_modes.csv` | Every game mode with a short how-it-works. | 20 | Org guide (xyukiterux.github.io/guides) |
-| `15_boss_and_war_rules.csv` | Game rule text for World Boss, Org Boss, Weekly Challenge, Conquest and the Stronghold wars. Archived text: a live boss can override it, so read the boss info screen. | 69 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (en.json rule text), audited 2026-11-02 |
+| `15_boss_and_war_rules.csv` | Game rule text for World Boss, Org Boss, Weekly Challenge, Conquest and the Stronghold wars. Archived text: a live boss can override it, so read the boss info screen. | 68 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (en.json rule text), audited 2026-11-02 |
 | `15b_boss_example_teams.csv` | Example teams per boss from the older guide. Untested on the current patch: use as a starting point. | 100 | Org guide (xyukiterux.github.io/guides) |
 | `16_server_day_calendar.csv` | What opens on which server day and what to do about it (banners, shops, level caps, rebate windows). | 57 | Org guide (xyukiterux.github.io/guides) |
 | `17_rules_and_glossary.csv` | Short rule summaries per system plus the game glossary (effects, keywords). | 165 | Org guide (xyukiterux.github.io/guides); Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (en.json) |
@@ -47,7 +47,7 @@ Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no
 | tkgbtc.com | https://tkgbtc.com/ | Hero data and client text tables (skills, constants, gear). | Tabs 05, 06, 15, 17, 20-22. |
 | Org guide | https://xyukiterux.github.io/guides/ | Our own guide: tiers, teams, calendar, economy, rules, each with its source. | Tabs 01 (tiers), 12, 14, 16, 17. |
 | Player hub | https://xyukiterux.github.io/reports/tgbtc/ | Per-player plans. | Reference only. |
-| Creator videos | https://www.youtube.com/ | Team screens and tips: Shi, Aslan, Kitcat, Sandro, Guff, Black_Assasine12, ZoltanVidakF2P and others. Every row in tab 13 links the exact video and second. | Tab 13. |
+| Creator videos | https://www.youtube.com/ | Team screens and tips: Shi, Aslan, Kitcat, Sandro, Guff, Black_Assasine12, ZoltanVidakF2P and others. Every Meta teams row links the exact video and second. | Tab 13. |
 | In-game screens |  | The only source for: VIP EXP per level, Diamond top-up prices, shop prices and limits, current boss rules. | Fill the NOT KNOWN YET rows in tab 12. |
 
 ## How to update the sheet

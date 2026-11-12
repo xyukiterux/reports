@@ -1,4 +1,42 @@
 ﻿release_date,date_quality,org,unit_id,name,rarity,max_cp,max_cp_with_lr_cell
+Launch,launch roster (no date in data),Anteiku,1007,Ken Kaneki [Awaken],SSR,154720,185501
+Launch,launch roster (no date in data),Anteiku,1011,Hinami Fueguchi [Fledgling Butterfly],SSR,152643,179022
+Launch,launch roster (no date in data),Anteiku,1014,Renji Yomo [Taciturn Warrior],SSR,154694,184618
+Launch,launch roster (no date in data),Anteiku,1026,Enji Koma [Devil Ape],SSR,151925,179683
+Launch,launch roster (no date in data),Anteiku,1027,Kaya Irimi [Black Dog],SSR,152211,185111
+Launch,launch roster (no date in data),Anteiku,1040,Ryoko Fueguchi [Daughter Protector],SSR,153941,180583
+Launch,launch roster (no date in data),Anteiku,1052,Toka Kirishima [Rabbit],SSR,157805,183978
+Launch,launch roster (no date in data),Anteiku,1076,Toka Kirishima [Blazewing],SSR,152725,183330
+Launch,launch roster (no date in data),Anteiku,1087,Ken Kaneki [Christmas],SSR,159513,186242
+Launch,launch roster (no date in data),Anteiku,1088,Hinami Fueguchi [Christmas],SSR,157500,179931
+Launch,launch roster (no date in data),Aogiri Tree,1006,Ayato Kirishima [Rebelwing],SSR,157206,183804
+Launch,launch roster (no date in data),Aogiri Tree,1012,Yakumo Omori [Jason],SSR,152676,179235
+Launch,launch roster (no date in data),Aogiri Tree,1030,Noro [Quick Revival],SSR,152069,182263
+Launch,launch roster (no date in data),Aogiri Tree,1036,Naki [Crybaby],SSR,151887,178552
+Launch,launch roster (no date in data),Aogiri Tree,1037,Nico [Ladyboy in Love],SSR,152439,178395
+Launch,launch roster (no date in data),Aogiri Tree,1038,Elder Bin [Tail Brothers],SSR,151612,177992
+Launch,launch roster (no date in data),Aogiri Tree,1039,Younger Bin [Tail Brothers],SSR,151551,177505
+Launch,launch roster (no date in data),CCG,1002,Kisho Arima [Lightning God],SSR,158039,189662
+Launch,launch roster (no date in data),CCG,1003,Juzo Suzuya [CCG Maverick],SSR,156536,186992
+Launch,launch roster (no date in data),CCG,1010,Kureo Mado [Quinque Maniac],SSR,151916,178117
+Launch,launch roster (no date in data),CCG,1013,Akira Mado [Father's Will],SSR,157033,185705
+Launch,launch roster (no date in data),CCG,1015,Yukinori Shinohara [Arata proto],SSR,152513,181873
+Launch,launch roster (no date in data),CCG,1023,Kosuke Hoji [Red Tongue Hitman],SSR,151982,178924
+Launch,launch roster (no date in data),CCG,1032,Iwao Kuroiwa [Arata proto],SSR,153397,182591
+Launch,launch roster (no date in data),CCG,1033,Take Hirako [Absolute Strength],SSR,152168,178112
+Launch,launch roster (no date in data),CCG,1035,Kori Ui [Shining New Star],SSR,152457,178226
+Launch,launch roster (no date in data),CCG,1041,Mogan Tanakamaru [Battleground Gentleman],SSR,151519,181718
+Launch,launch roster (no date in data),CCG,1042,Ayumu Hogi [Long-haired Ghoul Investigator],SSR,152010,181103
+Launch,launch roster (no date in data),CCG,1043,Chu Hachikawa [Envoy of Vengeance],SSR,152241,178967
+Launch,launch roster (no date in data),CCG,1046,Kyoji Misaka [Warden],SSR,152176,178017
+Launch,launch roster (no date in data),CCG,1060,Kohtaro Amon [Twinblades of Justice],SSR,152087,180479
+Launch,launch roster (no date in data),No Organization,1001,Rize Kamishiro [Binge Eater],SSR,151911,177797
+Launch,launch roster (no date in data),No Organization,1004,Shu Tsukiyama [Gourmet],SSR,153208,182985
+Launch,launch roster (no date in data),No Organization,1018,Kurona Yasuhisa [Inky Shroud],SSR,152389,177165
+Launch,launch roster (no date in data),No Organization,1019,Nashiro Yasuhisa [Spotless Shroud],SSR,152419,177195
+Launch,launch roster (no date in data),No Organization,1021,Matasaka Kamishiro [Shachi],SSR,170253,200844
+Launch,launch roster (no date in data),No Organization,1025,Uta [Mask-Maker],SSR,154567,185452
+Launch,launch roster (no date in data),No Organization,1031,Itori [Helter Skelter],SSR,153010,183615
 2024-09-25,dated,Aogiri Tree,1058,Ayato Kirishima [Wings of Power-seeker],SSR,170679,195881
 2024-09-25,dated,Aogiri Tree,1065,Ken Kaneki [Centipede Rampage],SSR,170444,200778
 2024-09-25,dated,Aogiri Tree,1071,Yakumo Omori [Warrior],SSR,172075,198641
@@ -84,41 +122,3 @@
 2026-10-25,dated,Anteiku,1180,Hinami Fueguchi [Halloween],SSR,178556,202163
 2026-11-08,dated,CCG,1181,Haise Sasaki [2nd Anniversary],SSR,181317,204888
 2026-11-09,dated,Aogiri Tree,1115,Seido Takizawa [OWL],SSR,184174,207740
-Launch,launch roster (no date in data),Anteiku,1007,Ken Kaneki [Awaken],SSR,154720,185501
-Launch,launch roster (no date in data),Anteiku,1011,Hinami Fueguchi [Fledgling Butterfly],SSR,152643,179022
-Launch,launch roster (no date in data),Anteiku,1014,Renji Yomo [Taciturn Warrior],SSR,154694,184618
-Launch,launch roster (no date in data),Anteiku,1026,Enji Koma [Devil Ape],SSR,151925,179683
-Launch,launch roster (no date in data),Anteiku,1027,Kaya Irimi [Black Dog],SSR,152211,185111
-Launch,launch roster (no date in data),Anteiku,1040,Ryoko Fueguchi [Daughter Protector],SSR,153941,180583
-Launch,launch roster (no date in data),Anteiku,1052,Toka Kirishima [Rabbit],SSR,157805,183978
-Launch,launch roster (no date in data),Anteiku,1076,Toka Kirishima [Blazewing],SSR,152725,183330
-Launch,launch roster (no date in data),Anteiku,1087,Ken Kaneki [Christmas],SSR,159513,186242
-Launch,launch roster (no date in data),Anteiku,1088,Hinami Fueguchi [Christmas],SSR,157500,179931
-Launch,launch roster (no date in data),Aogiri Tree,1006,Ayato Kirishima [Rebelwing],SSR,157206,183804
-Launch,launch roster (no date in data),Aogiri Tree,1012,Yakumo Omori [Jason],SSR,152676,179235
-Launch,launch roster (no date in data),Aogiri Tree,1030,Noro [Quick Revival],SSR,152069,182263
-Launch,launch roster (no date in data),Aogiri Tree,1036,Naki [Crybaby],SSR,151887,178552
-Launch,launch roster (no date in data),Aogiri Tree,1037,Nico [Ladyboy in Love],SSR,152439,178395
-Launch,launch roster (no date in data),Aogiri Tree,1038,Elder Bin [Tail Brothers],SSR,151612,177992
-Launch,launch roster (no date in data),Aogiri Tree,1039,Younger Bin [Tail Brothers],SSR,151551,177505
-Launch,launch roster (no date in data),CCG,1002,Kisho Arima [Lightning God],SSR,158039,189662
-Launch,launch roster (no date in data),CCG,1003,Juzo Suzuya [CCG Maverick],SSR,156536,186992
-Launch,launch roster (no date in data),CCG,1010,Kureo Mado [Quinque Maniac],SSR,151916,178117
-Launch,launch roster (no date in data),CCG,1013,Akira Mado [Father's Will],SSR,157033,185705
-Launch,launch roster (no date in data),CCG,1015,Yukinori Shinohara [Arata proto],SSR,152513,181873
-Launch,launch roster (no date in data),CCG,1023,Kosuke Hoji [Red Tongue Hitman],SSR,151982,178924
-Launch,launch roster (no date in data),CCG,1032,Iwao Kuroiwa [Arata proto],SSR,153397,182591
-Launch,launch roster (no date in data),CCG,1033,Take Hirako [Absolute Strength],SSR,152168,178112
-Launch,launch roster (no date in data),CCG,1035,Kori Ui [Shining New Star],SSR,152457,178226
-Launch,launch roster (no date in data),CCG,1041,Mogan Tanakamaru [Battleground Gentleman],SSR,151519,181718
-Launch,launch roster (no date in data),CCG,1042,Ayumu Hogi [Long-haired Ghoul Investigator],SSR,152010,181103
-Launch,launch roster (no date in data),CCG,1043,Chu Hachikawa [Envoy of Vengeance],SSR,152241,178967
-Launch,launch roster (no date in data),CCG,1046,Kyoji Misaka [Warden],SSR,152176,178017
-Launch,launch roster (no date in data),CCG,1060,Kohtaro Amon [Twinblades of Justice],SSR,152087,180479
-Launch,launch roster (no date in data),No Organization,1001,Rize Kamishiro [Binge Eater],SSR,151911,177797
-Launch,launch roster (no date in data),No Organization,1004,Shu Tsukiyama [Gourmet],SSR,153208,182985
-Launch,launch roster (no date in data),No Organization,1018,Kurona Yasuhisa [Inky Shroud],SSR,152389,177165
-Launch,launch roster (no date in data),No Organization,1019,Nashiro Yasuhisa [Spotless Shroud],SSR,152419,177195
-Launch,launch roster (no date in data),No Organization,1021,Matasaka Kamishiro [Shachi],SSR,170253,200844
-Launch,launch roster (no date in data),No Organization,1025,Uta [Mask-Maker],SSR,154567,185452
-Launch,launch roster (no date in data),No Organization,1031,Itori [Helter Skelter],SSR,153010,183615
