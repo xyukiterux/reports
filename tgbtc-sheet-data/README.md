@@ -4,7 +4,7 @@ Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no
 
 ## What you get
 
-- `TG_Org_Sheet_Starter.xlsx`: every table as a filterable tab, a working pull calculator, and a live org-power tab with a chart.
+- `TG_Org_Sheet_Starter.xlsx`: the data book for everyone. Plain-English pages with character pictures (Characters, Stats, Stars, Skills, Banners, Diamonds, Meta teams and more), a Home page that lists pages as questions, a How to read this page, a pull calculator and an org power chart.
 - `csv/`: the same tables as raw CSV files (UTF-8), for Excel, Google Sheets or Power Query.
 
 ## Tables
@@ -13,12 +13,12 @@ Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no
 |---|---|---|---|
 | `01_characters.csv` | One row per character: org, attribute, rarity, role, two tier lists, release date, how to get it. | 145 | gluttony.dev game database SEA 13368 (built 2026-11-12); tiers: Org guide (xyukiterux.github.io/guides) and gluttony.dev tier list |
 | `02_stats_lv1_and_max.csv` | Level-1 stats and maximum stats / combat power (CP) for every character. Blank max = not ranked by the source. | 145 | gluttony.dev game database SEA 13368 (built 2026-11-12) (max values are the site's own calculation at the top level cap) |
-| `03_growth_per_level.csv` | Stat gained per level, by growth group (see 02) and rank-up stage (0 = before the first rank-up). | 35 | gluttony.dev game database SEA 13368 (built 2026-11-12) cell calculator; client table HeroRank |
-| `03b_level_caps.csv` | Level-cap ladder and rank-up levels per character. | 145 | gluttony.dev game database SEA 13368 (built 2026-11-12); client table HeroQuality |
-| `04_build_constants.csv` | Build numbers: rarity growth multipliers, Potentials, Bond, RC Cell modification rolls and caps. | 60 | gluttony.dev game database SEA 13368 (built 2026-11-12) (cell calculator) |
+| `03_growth_per_level.csv` | How much Attack, Defense and Health ONE level adds. Characters are sorted into growth groups (Rank_20 to Rank_60: a bigger number grows faster; table 02 says which group a character is in). The stage is how many rank-ups the character has had (0 = none yet). | 35 | gluttony.dev game database SEA 13368 (built 2026-11-12) cell calculator; client table HeroRank |
+| `03b_level_caps.csv` | The ladder of level caps. A character stops at each cap (30, 40, 45 ... up to 500) until you raise its limit; 500 is the last cap in the game files, and servers open the higher caps over time, so nobody is there yet. Rank-up levels (55, 80, 110, 145, 300) are where a character ranks up and starts growing faster. | 145 | gluttony.dev game database SEA 13368 (built 2026-11-12); client table HeroQuality |
+| `04_build_constants.csv` | The fixed numbers behind builds: what a Potential or a Bond level adds, and how RC Cell modification rolls work (how many rolls, the possible values, the cap per line). For calculators, not for reading. | 60 | gluttony.dev game database SEA 13368 (built 2026-11-12) (cell calculator) |
 | `05_star_steps.csv` | What each star unlocks, whether any passive also works from the back-up slot, and the max-rank skill change. | 145 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28); gluttony.dev game database SEA 13368 (built 2026-11-12) |
 | `06_skills_and_passives.csv` | Full game text of every active card (with damage multipliers), passive, rank passive and Ability Sphere. | 1284 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (FightingSkill + en.json); gluttony.dev game database SEA 13368 (built 2026-11-12) |
-| `07_breakthrough_talents.csv` | Breakthrough talent options per character (5 options in each of 3 tiers). | 1860 | gluttony.dev game database SEA 13368 (built 2026-11-12) |
+| `07_breakthrough_talents.csv` | Breakthrough talents: at each of 3 tiers a character picks 1 of 5 options. This lists every option for every character. | 1860 | gluttony.dev game database SEA 13368 (built 2026-11-12) |
 | `08_cp_by_release.csv` | Every SSR/UR with its release date and max CP: the raw rows behind the org power trend. Launch-roster units have no date in the data and are grouped as Launch. | 123 | gluttony.dev game database SEA 13368 (built 2026-11-12) |
 | `09_cp_by_org_per_quarter.csv` | Org power over time: average max CP of each quarter's new SSR/UR units, the running average, and the best-5 average (a "best team" proxy). Last rows are a simple projection. | 48 | Computed from 08_cp_by_release |
 | `10_pull_banners.csv` | Every summon banner in the client table: price per pull, rate groups, guarantee milestones, featured units. Rate groups are listed top group first: on Regular Recruit they are SSR / SR / R (3% / 30% / 67%); on other banners the first group is the featured or top group. Exact per-character rates are in 10b. 300 Diamonds per pull on regular, limited and Legacy banners; 600 on Carnival banners. | 140 | Broken Chains data site (btc-web-863ee.web.app), read 2026-11-04: Gacha table |
@@ -33,9 +33,9 @@ Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no
 | `17_rules_and_glossary.csv` | Short rule summaries per system plus the game glossary (effects, keywords). | 165 | Org guide (xyukiterux.github.io/guides); Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (en.json) |
 | `18_banner_history.csv` | Banner schedule from the event table: by server day for new servers, by date for the original run. | 71 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (activity table) |
 | `19_patch_log.csv` | Recent game-data versions and which characters changed: the trigger to refresh the sheet. | 6 | gluttony.dev game database SEA 13368 (built 2026-11-12) |
-| `20_rc_cells_raw.csv` | RC Cell (gear) table: every cell, rarity, type and main-stat roll. | 210 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
-| `21_rank_up_costs_raw.csv` | Rank-up steps: cost and growth per level after each step. | 35 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
-| `22_game_constants_raw.csv` | Game constants table (limits, costs, timers, battle numbers) as shipped in the client. | 1563 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
+| `20_rc_cells_raw.csv` | Raw RC Cell (gear) table from the game files: every cell with its rarity, type and main-stat roll. | 210 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
+| `21_rank_up_costs_raw.csv` | Raw rank-up table from the game files: what each rank-up step costs and the growth per level after it. | 35 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
+| `22_game_constants_raw.csv` | Raw list of game constants from the game files (limits, costs, timers, battle numbers). Names are the developers' own; for people building calculators. | 1563 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) |
 
 ## Where the data comes from (and where to look when you update)
 
