@@ -1,6 +1,6 @@
 # Tokyo Ghoul: Break the Chains: org spreadsheet data pack
 
-Built 2026-11-12 from game data SEA 13368 (built 2026-11-12). Game data only: no player rosters and no spending records.
+Built 2026-11-17 from game data SEA 13368 (built 2026-11-12). Game data only: no player rosters and no spending records.
 
 ## What you get
 
