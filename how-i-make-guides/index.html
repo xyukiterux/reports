@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noai, noimageai, noarchive"><meta name="googlebot" content="noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How I make my guides with AI · Yuki</title>
+<meta name="description" content="Step by step: the tools, the data, the prompts and a free starter template for making a guide site like mine.">
+<style>
+:root{--bg:#0b0d14;--panel:#141823;--panel2:#1b2030;--line:#2b3247;--ink:#f2efed;--dim:#aeb5c5;--red:#f5687d;--cyan:#80d5d8;--gold:#f0b85a;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+html,body{margin:0}
+body{background:radial-gradient(ellipse at 80% 0,rgba(120,24,47,.25),transparent 50%),var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+a{color:#8ec5ff}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+header{padding:38px clamp(16px,3vw,48px) 28px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#1d1622,#14151d 60%,#17212b)}
+.kick{color:var(--red);font-weight:700;letter-spacing:.18em;font-size:13px;text-transform:uppercase;margin:0}
+h1{font:600 clamp(34px,5vw,62px)/1.05 var(--serif);margin:8px 0 12px}
+header p.lead{color:#c9cdd8;font-size:19px;max-width:72ch;margin:0}
+.jump{position:sticky;top:0;z-index:5;display:flex;gap:6px 18px;overflow-x:auto;padding:12px clamp(16px,3vw,48px);background:rgba(11,13,20,.96);border-bottom:1px solid var(--line)}
+.jump a{color:var(--dim);text-decoration:none;white-space:nowrap;font-size:15px}.jump a:hover{color:#fff}
+main{padding:0 clamp(16px,3vw,48px) 80px;max-width:2000px;margin:auto}
+h2{font:600 30px/1.2 var(--serif);margin:48px 0 6px}
+h2+p{color:var(--dim);margin:0 0 18px;max-width:90ch}
+h3{margin:0 0 6px;font-size:19px}
+p{margin:0 0 10px}
+.say{margin-top:24px;background:#201a10;border:1px solid #5a4520;border-radius:14px;padding:16px 20px;font-size:18px;max-width:1100px}
+.say b{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card p{color:#c9cdd8;font-size:16px;margin:0}
+.card .tag{display:inline-block;margin-bottom:8px;color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px;list-style:none;margin:0;padding:0;counter-reset:f}
+.flow li{counter-increment:f;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:14px;padding:16px 18px}
+.flow li:before{content:counter(f);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--red);color:#0b0d14;font-weight:800;margin-bottom:8px}
+.flow p{color:#c9cdd8;font-size:15.5px;margin:0}
+.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:18px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+figure img{width:100%;height:auto;display:block}
+figcaption{padding:14px 18px 16px;color:#c9cdd8;font-size:16px}
+figcaption b{color:#fff}
+.steps{display:grid;gap:18px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps>li{counter-increment:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:8px 28px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:16px;padding:20px 22px}
+.steps h3{font:600 23px/1.25 var(--serif)}
+.steps h3:before{content:"Step " counter(s);display:block;color:var(--red);font:700 12px/1.6 "Segoe UI",system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.steps ul,.steps ol{margin:6px 0 0;padding-left:20px;color:#d6d9e2}.steps li li{margin:5px 0}
+.prompt{position:relative;background:#0e121c;border:1px solid #3a4260;border-radius:12px;min-width:0}
+.prompt>span{display:block;padding:9px 14px;border-bottom:1px solid #2b3247;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.prompt pre{margin:0;padding:14px;white-space:pre-wrap;word-break:break-word;font:14.5px/1.55 Consolas,"SF Mono",Menlo,monospace;color:#e7e9f0}
+.prompt button{position:absolute;top:5px;right:6px;min-height:30px;padding:3px 12px;border-radius:8px;border:1px solid #485067;background:var(--panel2);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.prompt button:hover{border-color:var(--red)}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:10px 20px;border-radius:10px;background:var(--red);color:#14060a;font-weight:700;text-decoration:none;margin:4px 8px 4px 0}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;background:var(--panel)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+th,td{padding:12px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--panel2)}td:first-child{font-weight:600;white-space:nowrap}
+.bad{border-left:6px solid var(--gold)}
+footer{padding:22px clamp(16px,3vw,48px);border-top:1px solid var(--line);color:var(--dim);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <p class="kick">Yuki · how I do it</p>
+  <h1>How I make my guides with AI</h1>
+  <p class="lead">The tools, where the data comes from, the prompts, and a free starter template so you can make the same kind of guide for any topic.</p>
+  <div class="say"><b>Short answer:</b> I don't write code and I don't type much. I talk to an AI agent, it builds a data file first, then a website from that data, and a second AI checks it before it goes on a free GitHub link. The look is the easy part to copy. The data is the part that takes time.</div>
+</header>
+<nav class="jump" aria-label="On this page">
+  <a href="#tools">What I use</a><a href="#flow">How it works</a><a href="#look">The look</a><a href="#steps">Step by step</a><a href="#starter">Starter template</a><a href="#yours">For gear guides</a><a href="#mistakes">Mistakes to skip</a><a href="#limits">What you can't copy</a>
+</nav>
+<main>
+
+<h2 id="tools">What I use</h2>
+<p>Everything here is a normal product anyone can sign up for. Nothing is custom except the data I collected.</p>
+<div class="grid">
+  <div class="card"><span class="tag">The AI agent</span><h3>Claude Code</h3><p>Anthropic's agent app (desktop app or terminal). It is not a chat box: it works inside a folder on my PC, creates the files, runs them, looks at the result and fixes it. It comes with the paid Claude plans.</p></div>
+  <div class="card"><span class="tag">The model</span><h3>Claude Opus, and Fable for hard parts</h3><p>Opus does most of the building. For the hard problems I switch to Fable, Anthropic's top model right now (Nov 2026). Use the strongest model you have for the plan and the review; cheaper ones are fine for small edits.</p></div>
+  <div class="card"><span class="tag">How I prompt</span><h3>I talk, I don't type</h3><p>Voice typing (on Windows press <b>Win + H</b>). I explain what I want like I would to a person, with the reason. That is why I have no neat list of prompts. The prompts below are the cleaned-up version of what I say.</p></div>
+  <div class="card"><span class="tag">Research</span><h3>Claude in Chrome</h3><p>A browser extension that lets Claude read pages in my own Chrome. I use it for things a normal AI can't open: YouTube transcripts, sites that block bots, pages I'm signed in to.</p></div>
+  <div class="card"><span class="tag">Hosting</span><h3>GitHub Pages</h3><p>Free. The site is just files in a GitHub repository, and GitHub gives it a public link. No server, no monthly cost, opens on any phone.</p></div>
+  <div class="card"><span class="tag">Quality check</span><h3>A second AI as the judge</h3><p>Before anything goes live, a fresh AI that did not build it (a new Claude chat, or ChatGPT) reviews it and gives a score. The builder never grades its own work.</p></div>
+</div>
+
+<h2 id="flow">How it works</h2>
+<p>The order matters. Most people ask the AI for "a website" first. I ask for the data first.</p>
+<ol class="flow">
+  <li><h3>Collect</h3><p>Pull the facts into data files. Every row keeps where it came from and the date.</p></li>
+  <li><h3>Build</h3><p>A small script turns the data into the pages. Nobody types facts into the pages by hand.</p></li>
+  <li><h3>Look</h3><p>The AI opens the site, takes screenshots on PC and phone width, and fixes what looks wrong.</p></li>
+  <li><h3>Judge</h3><p>A second AI checks every claim against the data and scores it. Fix, then judge again.</p></li>
+  <li><h3>Publish</h3><p>Push to GitHub. The link updates. Post the link in Discord.</p></li>
+  <li><h3>Update</h3><p>When something changes, change the data and rebuild. The pages follow.</p></li>
+</ol>
+<div class="say"><b>Why data first:</b> an AI that writes a page from memory will invent things, and it will sound sure about them. An AI that is only allowed to show what is in the data file can't.</div>
+
+<h2 id="look">The look</h2>
+<p>This is what my Tokyo Ghoul guide looks like, and the rules behind it. These rules are what you give your AI.</p>
+<div class="pics">
+  <figure><img src="img/home.jpg" width="1200" height="750" alt="Guide home page: big headline, search box, four faction buttons" loading="lazy"><figcaption><b>Home.</b> One big headline, one sentence, a search box, and buttons for the main groups. Menu across the top with 8 items and a "More". The date it was last updated is always visible.</figcaption></figure>
+  <figure><img src="img/tiers.jpg" width="1200" height="750" alt="Tier list page with a How to play box at the top" loading="lazy"><figcaption><b>Every page starts the same way.</b> Small red label, big title, one line of help, then a short box with the answer in 3 to 4 bullets. Details and sources sit behind a "+" button, so the page stays short.</figcaption></figure>
+  <figure><img src="img/characters.jpg" width="1200" height="750" alt="Characters page with search and four filters" loading="lazy"><figcaption><b>Lists.</b> A search box plus a few dropdown filters, then cards with a picture. Tap a card for the full details.</figcaption></figure>
+  <figure><img src="img/sources.jpg" width="1200" height="750" alt="Sources page with counts and article cards" loading="lazy"><figcaption><b>Sources page.</b> Counts of what is in the guide and where every fact comes from. This is what makes people trust it.</figcaption></figure>
+</div>
+<div class="tw" style="margin-top:18px"><table>
+<thead><tr><th>Part</th><th>What I told the AI</th></tr></thead>
+<tbody>
+<tr><td>Colours</td><td>Dark background (#0b0d14), slightly lighter panels (#141823), off-white text, ONE accent colour (mine is red #f5687d), a second calm colour for help boxes (cyan #80d5d8), gold for warnings.</td></tr>
+<tr><td>Fonts</td><td>Serif for big titles (Georgia), plain sans for everything else. Body text 17px or bigger.</td></tr>
+<tr><td>Layout</td><td>Use the full screen width on PC. Cards in a grid, rounded corners, thin borders. Must work at phone width with no sideways scrolling.</td></tr>
+<tr><td>Words</td><td>Short. Answer first. No paragraph longer than 3 lines. Details go behind a button.</td></tr>
+<tr><td>Pictures</td><td>A picture on every item. People scan pictures, they don't read lists.</td></tr>
+<tr><td>Trust</td><td>"Updated" date at the top, a Source button on every claim, and a label on anything that is opinion or unverified.</td></tr>
+</tbody></table></div>
+
+<h2 id="steps">Step by step</h2>
+<p>Do these in order. Each step has a prompt you can copy. Change the parts in CAPITALS.</p>
+<ol class="steps">
+
+<li><div><h3>Set up (once, about 20 minutes)</h3>
+<ul><li>Get a paid Claude plan and install Claude Code (the desktop app is the easy one).</li>
+<li>Make a free GitHub account.</li>
+<li>Make an empty folder on your PC for the guide and open that folder in Claude Code.</li>
+<li>Optional: install the Claude in Chrome extension for research.</li>
+<li>No Claude Code? The same prompts work in a normal Claude or ChatGPT chat. You will just copy files around by hand.</li></ul></div>
+<div class="prompt"><span>Prompt 1 · the brief</span><button>Copy</button><pre>I want to build a guide website about TOPIC for AUDIENCE.
+The reader's main questions are:
+1. QUESTION ONE (example: which one should I buy?)
+2. QUESTION TWO
+3. QUESTION THREE
+
+Before you build anything, ask me up to 5 questions you need answered, then write a one-page plan: the pages, what data each page needs, and where that data will come from. Wait for my OK before building.
+
+Rules for the whole project:
+- Facts come from data files, never from your memory.
+- Every fact keeps its source link and the date it was checked.
+- If you cannot verify something, label it "unverified". Never guess.
+- Write for people who are not experts. Short sentences.</pre></div></li>
+
+<li><div><h3>Collect the data first</h3>
+<ul><li>Tell it exactly which sources to use. Good sources: official spec pages, a database site, reviewers who measure things, your own tests.</li>
+<li>Videos count. Ask it to read the transcript and keep the video link and the time stamp.</li>
+<li>Ask for a count at the end and a list of what it could not find.</li>
+<li>Open the data file and spot-check 5 rows yourself against the source. If 1 of 5 is wrong, stop and fix the method.</li></ul></div>
+<div class="prompt"><span>Prompt 2 · data</span><button>Copy</button><pre>Do not build any pages yet. Build the data file first.
+
+Create data/items.json. One entry per ITEM with: id, name, category, the specs I care about (LIST THEM), price, a one-sentence verdict, pros, cons, and a "sources" list. Each source has: label, url, date checked.
+
+Use these sources: SOURCE 1, SOURCE 2, SOURCE 3.
+Save the raw pages you read in data/raw/ so we can re-check later.
+
+Rules:
+- A spec needs at least one source. A rating or opinion needs at least two sources that agree, or it is labelled "opinion: NAME".
+- Leave a field empty and add it to data/missing.md if you cannot find it. Do not fill gaps from memory.
+
+When done, tell me: how many items, how many have no source, and what is in missing.md.</pre></div></li>
+
+<li><div><h3>Build the site from the data</h3>
+<ul><li>Give it the look. Either paste the prompt on the right, or give it my starter template (below) and say "use this layout".</li>
+<li>Ask for one small build script, so updating later is one command.</li>
+<li>If you have a site you like, give it a screenshot and say "this feeling".</li></ul></div>
+<div class="prompt"><span>Prompt 3 · build + look</span><button>Copy</button><pre>Now build the site from data/items.json. Write a build script (build.py) that reads the data and writes the site into a "site" folder. No facts typed into the pages by hand.
+
+Pages: Home, Ladder (tier list), Compare (2-3 items side by side), All items (search + filters), Reviewers, Sources.
+
+Look:
+- Dark theme: background #0b0d14, panels #141823, off-white text, one accent colour ACCENT, thin borders, rounded cards.
+- Serif font for big titles, sans for the rest, body text 17px.
+- Menu across the top. "Guide updated DATE" always visible.
+- Every page starts with: small label, big title, one line of help, then a box with the answer in 3-4 bullets.
+- Details and sources sit behind a "+ Source" button so pages stay short.
+- A picture on every item card. Tap a card to open the full details.
+- Full screen width on PC. Must work on a phone with no sideways scrolling.
+- Plain HTML, CSS and JavaScript. No frameworks, no outside files, so it can be hosted anywhere.
+
+When it is built, open it yourself, take screenshots at PC width and phone width, look at them, and fix anything broken before you show me.</pre></div></li>
+
+<li><div><h3>Look at it and say what is wrong</h3>
+<ul><li>This is most of the work, and it is just talking. Open the site, and say what bothers you in plain words.</li>
+<li>Say the problem and the reason. The AI picks a better fix when it knows why.</li>
+<li>One round of 3 to 5 complaints at a time. Then look again.</li></ul></div>
+<div class="prompt"><span>Prompt 4 · things I actually say</span><button>Copy</button><pre>- "Too wordy. Cut every page to what someone needs in 10 seconds. Move the rest behind a button."
+- "Everything is squeezed to the left. Use the whole screen."
+- "This chart is hard to read. Break it into small blocks with one number each."
+- "I want pictures, not a wall of text."
+- "Someone who has never seen this topic should understand this page. Rewrite the labels in plain words."
+- "Where did this number come from? Show me the source. If there isn't one, remove it."
+- "Open every page and look at it. Not a sample, every page."</pre></div></li>
+
+<li><div><h3>Get it judged by a different AI</h3>
+<ul><li>Open a brand new chat (or a different AI). Give it the data file and the pages. Don't tell it you're happy with them.</li>
+<li>Fix what it finds, then judge again with another fresh chat. I don't publish until it scores 95 or more with nothing serious left.</li>
+<li>For my game guide the bar is 99, because bad advice there costs people real money.</li></ul></div>
+<div class="prompt"><span>Prompt 5 · the judge</span><button>Copy</button><pre>You are a strict reviewer. You did not build this and you get no credit for being nice.
+
+Here is a guide site and the data file it was built from.
+1. List every claim on the pages that is not backed by the data file or has no source.
+2. List anything a beginner would not understand.
+3. List anything that looks broken or crowded, on PC and on phone width.
+4. List places where an opinion is shown as a fact.
+
+Mark each finding HIGH, MEDIUM or LOW. Then give one score from 0 to 100. Do not round up. If you could not check something, say so instead of assuming it is fine.</pre></div></li>
+
+<li><div><h3>Publish to a free link</h3>
+<ul><li>In Claude Code, the prompt on the right does it. It will ask you to sign in to GitHub once.</li>
+<li>By hand: on github.com press <b>New repository</b>, make it <b>Public</b>, press <b>Add file → Upload files</b>, drop in the files from your "site" folder, then <b>Settings → Pages → Deploy from a branch → main → Save</b>.</li>
+<li>After a minute or two your link is <b>YOURNAME.github.io/REPONAME/</b>.</li></ul></div>
+<div class="prompt"><span>Prompt 6 · publish</span><button>Copy</button><pre>Publish the "site" folder with GitHub Pages in a new public repository called REPONAME. Before you push, check that nothing private is in the files (names, emails, file paths from my PC). After it is live, open the public link yourself and confirm the new pages load, then give me the link.</pre></div></li>
+
+<li><div><h3>Keep it up to date</h3>
+<ul><li>A guide people stop trusting is worse than no guide. Put the date on it and keep it true.</li>
+<li>When something changes, I say what changed and where I saw it. The AI updates the data, rebuilds, and publishes.</li>
+<li>When someone says "that's wrong", don't just agree or disagree. Have the AI re-check the source first.</li></ul></div>
+<div class="prompt"><span>Prompt 7 · update</span><button>Copy</button><pre>Update the guide. What changed: WHAT CHANGED. Where I saw it: LINK OR SCREENSHOT.
+
+Check it against a second source before changing anything. Update the data file (not the pages), rebuild, tell me which pages changed, set today's date as the "updated" date, and publish. If the new information disagrees with what the guide says now, show me both and the sources before you pick one.</pre></div></li>
+</ol>
+
+<h2 id="starter">Starter template</h2>
+<p>A working copy of my layout with sample data: Home, Ladder, Compare, All items, Reviewers and Sources. It is one file. Free to copy, change and publish, no credit needed.</p>
+<div class="pics">
+  <figure><img src="img/starter-ladder.jpg" width="1200" height="750" alt="Starter template ladder page" loading="lazy"><figcaption><b>Ladder.</b> Rows from best to worst, with what each letter means at the top.</figcaption></figure>
+  <figure><img src="img/starter-compare.jpg" width="1200" height="750" alt="Starter template compare page" loading="lazy"><figcaption><b>Compare.</b> Pick two or three items; the rows line up.</figcaption></figure>
+</div>
+<p style="margin-top:16px"><a class="btn" href="starter/">Open the starter</a><a class="btn ghost" href="starter/index.html" download="guide-starter.html">Download the file</a></p>
+<ol class="steps" style="counter-reset:none">
+<li style="border-left-color:var(--cyan)"><div><h3 style="font-size:20px">How to use it</h3>
+<ul><li>Download the file and put it in your guide folder (or attach it to a chat).</li>
+<li>Paste the prompt. The AI keeps the layout and swaps in your data.</li>
+<li>To change the colour, tell it "make the accent blue", or edit <b>--accent</b> near the top of the file.</li>
+<li>Everything in it is fake sample data ("Sample Mouse A", "$00"). The page shows a warning until all of it is replaced.</li></ul></div>
+<div class="prompt"><span>Prompt 8 · use the starter</span><button>Copy</button><pre>Attached is guide-starter.html. Keep its layout, pages and code. Replace the sample DATA block with real data about TOPIC from data/items.json. Change the title, headline, categories, tier meanings and spec rows to fit. Every item needs at least one source link and the date it was checked. Do not leave any sample item in. Then open it, screenshot every page at PC and phone width, and fix what looks wrong.</pre></div></li>
+</ol>
+
+<h2 id="yours">For a gear guide (peripherals, comparisons, reviewers, ladders)</h2>
+<p>How I would set up the pages and the data for that topic.</p>
+<div class="grid">
+  <div class="card"><span class="tag">Page</span><h3>Ladder</h3><p>One ladder per type (mice, keyboards, headsets). At the top, say what S, A, B and C mean in one line each, and who made the rating.</p></div>
+  <div class="card"><span class="tag">Page</span><h3>Compare</h3><p>Two or three items side by side with the same rows: price, weight, connection, battery, good, bad, verdict.</p></div>
+  <div class="card"><span class="tag">Page</span><h3>Item cards</h3><p>Picture, rating, price, one sentence on who should buy it, specs, good and bad, sources. Search plus filters for type, price range and rating.</p></div>
+  <div class="card"><span class="tag">Page</span><h3>Reviewers</h3><p>Who you trust and why: do they measure, do they take sponsors, what are they good at. Link to them. Rate how much weight each one gets.</p></div>
+  <div class="card"><span class="tag">Data</span><h3>Specs vs opinions</h3><p>Keep them apart. Specs come from the maker's page or a measurement. Ratings are opinions: show whose opinion, and need two reviewers who agree.</p></div>
+  <div class="card"><span class="tag">Data</span><h3>Prices go stale</h3><p>Store the price with the date and the shop. Show "price checked DATE" on the card. Re-check before each update.</p></div>
+</div>
+
+<h2 id="mistakes">Mistakes I made, so you can skip them</h2>
+<p>All of these happened to me on the Tokyo Ghoul guide.</p>
+<div class="grid">
+  <div class="card bad"><h3>Trusting one source</h3><p>I published a ranking based on one person's tip and old videos. It was out of date. Now a ranking needs two recent sources or it gets a "no recent source" label.</p></div>
+  <div class="card bad"><h3>Letting the AI agree with me</h3><p>AI tends to say yes. Tell it: "Be a strict expert. If my idea is wrong based on the data, say so and show the data."</p></div>
+  <div class="card bad"><h3>Too many words, too many pages</h3><p>My first version had 19 menu items. Nobody read it. It is 8 now, with the rest under "More".</p></div>
+  <div class="card bad"><h3>Not looking at every page</h3><p>The AI said "done" and three pages were broken. Always make it screenshot every page, PC and phone, and look yourself.</p></div>
+  <div class="card bad"><h3>Sending files instead of a link</h3><p>People don't open zips or PDFs. One link that opens in the browser, on a phone, with no sign-in.</p></div>
+  <div class="card bad"><h3>Publishing private stuff</h3><p>A public GitHub repository is public. Before each publish, have the AI scan for names, emails and PC file paths.</p></div>
+</div>
+
+<h2 id="limits">What you can't copy from me</h2>
+<p>So you know what to expect.</p>
+<div class="grid">
+  <div class="card"><span class="tag">The data</span><h3>It took weeks</h3><p>My guide runs on a database pulled from the game files (143 characters), 350+ creator video transcripts, and my own in-game tests and screenshots. The site runs about 100 automatic checks before each publish. That part is specific to the game. Your topic needs its own data, and that is where your time goes.</p></div>
+  <div class="card"><span class="tag">The bot</span><h3>The translator bot</h3><p>The Discord bot is a separate project that runs on my own machine. It is not part of the guide and can't be handed over as a file.</p></div>
+  <div class="card"><span class="tag">Cost</span><h3>What it costs</h3><p>GitHub is free. The AI is a monthly subscription. A small guide fits on the lowest paid plan. I'm on a bigger plan only because I run it all day.</p></div>
+  <div class="card"><span class="tag">Time</span><h3>What to expect</h3><p>A first version with the starter template: an evening. A guide people rely on: keep updating it every week. The AI does the typing; you still have to check it.</p></div>
+</div>
+
+</main>
+<footer>Written by Yuki, November 18, 2026. The starter template is free to copy and change. Live example of the method: <a href="https://xyukiterux.github.io/guides/tgbtc/">Tokyo Ghoul: Break the Chains field guide</a>.</footer>
+<script>
+document.querySelectorAll(".prompt button").forEach(b => b.addEventListener("click", async () => {
+  const text = b.parentElement.querySelector("pre").textContent;
+  try { await navigator.clipboard.writeText(text); }
+  catch { const r = document.createRange(); r.selectNodeContents(b.parentElement.querySelector("pre")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); }
+  b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500);
+}));
+</script>
+</body>
+</html>

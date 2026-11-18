@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noai, noimageai, noarchive"><meta name="googlebot" content="noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guide starter template</title>
+<!--
+  GUIDE STARTER TEMPLATE  (free to copy, change and publish; no credit needed)
+
+  How to use it:
+  1. Save this one file. It is the whole site: look, pages and data.
+  2. Everything you see on the pages comes from the DATA block below. Change DATA, the pages change.
+  3. Easiest way: give this file to your AI and say
+     "Keep the layout and the code. Replace the sample DATA with real data about <my topic>.
+      Every item needs at least one source link and the date it was checked."
+  4. To change the colour, edit --accent in the :root line.
+  All items in DATA are made-up samples. Replace every one of them.
+-->
+<style>
+:root{--accent:#f5687d;--accent2:#80d5d8;--gold:#e4c18b;--bg:#0b0d14;--panel:#141823;--panel2:#1b2030;--ink:#f2efed;--muted:#aeb5c5;--line:#303648;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(ellipse at 75% 0,color-mix(in srgb,var(--accent) 14%,transparent),transparent 50%),var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;min-height:100vh}
+a{color:inherit}
+button,input,select{font:inherit;color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+header{display:flex;align-items:center;gap:8px 28px;flex-wrap:wrap;padding:14px clamp(16px,3vw,40px);border-bottom:1px solid var(--accent);background:rgba(11,13,20,.97);position:sticky;top:0;z-index:5}
+.brand{font-weight:800;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:600}
+nav{display:flex;gap:2px 20px;flex-wrap:wrap;flex:1}
+nav a{color:var(--muted);text-decoration:none;padding:10px 0;border-bottom:2px solid transparent;font-size:15px}
+nav a.on,nav a:hover{color:#fff}nav a.on{border-color:var(--accent)}
+.bar{padding:12px clamp(16px,3vw,40px);font-size:12px;letter-spacing:1.3px;color:var(--muted);text-transform:uppercase}
+.bar b{color:#fff;margin-left:8px}.bar i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px}
+main{padding:6px clamp(16px,3vw,40px) 70px}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin:14px 0 8px}
+.eyebrow:before{content:"";display:inline-block;width:18px;height:2px;background:var(--accent);vertical-align:middle;margin-right:10px}
+h1{font:500 clamp(32px,4.6vw,52px)/1.08 var(--serif);letter-spacing:-1px;margin:0 0 12px}
+h1 em{font-style:normal;color:var(--accent)}
+h2{font:500 26px/1.2 var(--serif);margin:34px 0 10px}
+h3{margin:0 0 6px;font-size:18px}
+p{margin:0 0 12px}.lead{font-size:19px;color:#d6d9e2;max-width:70ch}.muted{color:var(--muted)}
+.hero{border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,44px);background:linear-gradient(120deg,var(--panel),#161320);margin-top:10px}
+.quick{border:1px solid color-mix(in srgb,var(--accent2) 45%,transparent);border-left:4px solid var(--accent2);border-radius:14px;background:#0f1c22;padding:16px 22px;margin:18px 0;max-width:900px}
+.quick h4{margin:0 0 8px;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;font-size:14px}
+.quick ul{margin:0;padding-left:20px}.quick li{margin:5px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-align:left;display:block;width:100%;text-decoration:none}
+button.card{cursor:pointer}button.card:hover,a.card:hover{border-color:var(--accent)}
+.card p{color:#c9cdd8;font-size:15.5px;margin:0}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pic{flex:none;width:52px;height:52px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font:600 22px var(--serif);color:var(--accent);object-fit:cover}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:13px;color:var(--muted)}
+.tier{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;font-weight:800;color:#0b0d14;background:var(--t,#888)}
+.controls{display:grid;grid-template-columns:2fr repeat(auto-fit,minmax(150px,1fr));gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0}
+label{font-size:14px;color:var(--muted);display:block}
+input,select{width:100%;min-height:44px;margin-top:5px;padding:10px 12px;border-radius:8px;border:1px solid #485067;background:#0e121c}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:#14060a;font-weight:700;cursor:pointer;text-decoration:none}
+.ladder{display:grid;gap:12px}
+.rung{display:grid;grid-template-columns:64px 1fr;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rung>b{display:grid;place-items:center;font:700 28px var(--serif);color:#0b0d14;background:var(--t)}
+.rung>div{display:flex;flex-wrap:wrap;gap:10px;padding:12px}
+.chip{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}.chip .pic{width:38px;height:38px;font-size:17px;border-radius:9px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--panel)}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--panel2);font-size:16px}tbody th{color:var(--muted);font-weight:600;width:170px}
+.best{color:var(--gold);font-weight:700}
+details{border-left:3px solid var(--line);padding-left:14px;margin:12px 0}
+summary{cursor:pointer;display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 16px;color:var(--accent);font-weight:700;list-style:none}
+summary:before{content:"+  "}details[open] summary:before{content:"–  "}
+.src{font-size:14.5px;color:var(--muted)}.src a{color:#8ec5ff}
+dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:22px;width:min(760px,94vw);max-height:88vh}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.pro li::marker{color:#7fd08a}.con li::marker{color:var(--accent)}
+.sample{background:#201a10;border:1px solid #5a4520;color:var(--gold);border-radius:10px;padding:10px 14px;margin:14px 0;font-size:15px}
+@media(max-width:760px){header{position:static}nav{flex:1 0 100%;flex-wrap:nowrap;overflow-x:auto}nav a{white-space:nowrap}}
+footer{padding:20px clamp(16px,3vw,40px);color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#home" id="brand"></a>
+  <nav id="nav"></nav>
+</header>
+<div class="bar"><i></i>Guide updated <b id="updated"></b></div>
+<main id="main"></main>
+<dialog id="dlg"></dialog>
+<footer id="foot"></footer>
+
+<script>
+/* ============================ DATA: change this part ============================ */
+const DATA = {
+  site: {
+    title: "Gear Guide",
+    subtitle: "Mice / keyboards / headsets",
+    headline: ["Pick the right gear.", "Skip the hype."],
+    tagline: "A guide for every budget: what to buy, what to skip, and who to trust for reviews.",
+    updated: "November 18, 2026",
+    quick: [
+      "Start with the Ladder: S is the safe pick, C is only worth it on sale.",
+      "Use Compare to put two or three items side by side.",
+      "Every rating has a source. Open the Source button to check it."
+    ]
+  },
+  // Ladder rows, best first. "means" is the one-line rule shown on the Ladder page.
+  tiers: [
+    { id: "S", color: "#f5687d", means: "Buy it. Best in its class." },
+    { id: "A", color: "#e4c18b", means: "Great, with one small trade-off." },
+    { id: "B", color: "#80d5d8", means: "Good for the right person." },
+    { id: "C", color: "#8f9bb8", means: "Only at a discount." }
+  ],
+  // The spec rows shown on cards and in Compare, in this order.
+  specs: [
+    { key: "price", label: "Price" },
+    { key: "weight", label: "Weight" },
+    { key: "connection", label: "Connection" },
+    { key: "battery", label: "Battery" }
+  ],
+  items: [
+    { id: "sample-mouse-a", name: "Sample Mouse A", category: "Mice", tier: "S", img: "",
+      summary: "Sample text. One sentence on who should buy this.",
+      specs: { price: "$00", weight: "00 g", connection: "Wireless", battery: "00 h" },
+      pros: ["Sample strength one", "Sample strength two"], cons: ["Sample weakness"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] },
+    { id: "sample-mouse-b", name: "Sample Mouse B", category: "Mice", tier: "A", img: "",
+      summary: "Sample text. The cheaper pick with one trade-off.",
+      specs: { price: "$00", weight: "00 g", connection: "Wired", battery: "None" },
+      pros: ["Sample strength"], cons: ["Sample weakness one", "Sample weakness two"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] },
+    { id: "sample-keyboard-a", name: "Sample Keyboard A", category: "Keyboards", tier: "S", img: "",
+      summary: "Sample text. Why this is the default pick.",
+      specs: { price: "$00", weight: "00 g", connection: "Wired", battery: "None" },
+      pros: ["Sample strength"], cons: ["Sample weakness"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] },
+    { id: "sample-keyboard-b", name: "Sample Keyboard B", category: "Keyboards", tier: "B", img: "",
+      summary: "Sample text. Good for one kind of buyer only.",
+      specs: { price: "$00", weight: "00 g", connection: "Wireless", battery: "00 h" },
+      pros: ["Sample strength"], cons: ["Sample weakness"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] },
+    { id: "sample-headset-a", name: "Sample Headset A", category: "Headsets", tier: "A", img: "",
+      summary: "Sample text. Best sound for the price.",
+      specs: { price: "$00", weight: "00 g", connection: "Wireless", battery: "00 h" },
+      pros: ["Sample strength"], cons: ["Sample weakness"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] },
+    { id: "sample-headset-b", name: "Sample Headset B", category: "Headsets", tier: "C", img: "",
+      summary: "Sample text. Only worth it on sale.",
+      specs: { price: "$00", weight: "00 g", connection: "Wired", battery: "None" },
+      pros: ["Sample strength"], cons: ["Sample weakness"],
+      sources: [{ label: "Sample review (replace me)", url: "https://example.com", checked: "2026-11-18" }] }
+  ],
+  reviewers: [
+    { name: "Sample Reviewer One", where: "YouTube", url: "https://example.com", trust: "High",
+      why: "Sample text. Measures with tools and shows the numbers." },
+    { name: "Sample Reviewer Two", where: "Website", url: "https://example.com", trust: "Medium",
+      why: "Sample text. Good opinions, but takes sponsored products." }
+  ],
+  about: "Sample text. Say how you rate things, how often you update, and what you could not check."
+};
+/* ========================== END OF DATA: code below ========================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const PAGES = [["home", "Home"], ["ladder", "Ladder"], ["compare", "Compare"], ["items", "All items"], ["reviewers", "Reviewers"], ["sources", "Sources"]];
+const tierOf = id => DATA.tiers.find(t => t.id === id) || { id, color: "#888" };
+const byId = id => DATA.items.find(i => i.id === id);
+const cats = [...new Set(DATA.items.map(i => i.category))];
+const pic = i => i.img ? `<img class="pic" src="${esc(i.img)}" alt="">` : `<span class="pic">${esc((i.category || i.name)[0])}</span>`;
+const tierBadge = id => `<span class="tier" style="--t:${tierOf(id).color}">${esc(id)}</span>`;
+const srcList = list => `<details><summary>Source</summary><div class="src">${(list || []).map(s =>
+  `<p><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a> · checked ${esc(s.checked)}</p>`).join("") || "<p>No source yet. Treat this as unverified.</p>"}</div></details>`;
+const head = (eyebrow, title, lead) => `<p class="eyebrow">${esc(eyebrow)}</p><h1>${title}</h1><p class="lead">${esc(lead)}</p>`;
+const itemCard = i => `<button class="card" data-open="${esc(i.id)}"><div class="row">${pic(i)}<div style="flex:1"><h3>${esc(i.name)}</h3>
+  <span class="tag">${esc(i.category)}</span> <span class="tag">${esc(i.specs?.price || "")}</span></div>${tierBadge(i.tier)}</div>
+  <p style="margin-top:10px">${esc(i.summary)}</p></button>`;
+
+const state = { q: "", cat: "", tier: "", cmp: DATA.items.slice(0, 2).map(i => i.id) };
+
+const views = {
+  home() {
+    const s = DATA.site;
+    return `<section class="hero"><p class="eyebrow">${esc(s.title)}</p>
+      <h1>${esc(s.headline[0])}<br><em>${esc(s.headline[1])}</em></h1><p class="lead">${esc(s.tagline)}</p>
+      <form class="row" id="homesearch" style="max-width:560px"><input id="hq" placeholder="Search items..." aria-label="Search" style="flex:1;margin:0">
+      <button class="btn">Search</button></form>
+      <div class="row" style="margin-top:14px">${cats.map(c => `<a class="tag" style="padding:8px 16px;color:#fff;text-decoration:none" href="#items" data-cat="${esc(c)}">${esc(c)}</a>`).join("")}</div></section>
+      <div class="quick"><h4>How to use this guide</h4><ul>${s.quick.map(q => `<li>${esc(q)}</li>`).join("")}</ul></div>
+      <h2>Top picks</h2><div class="grid">${DATA.items.filter(i => i.tier === DATA.tiers[0].id).map(itemCard).join("")}</div>`;
+  },
+  ladder() {
+    return head("Ladder", `All ${DATA.items.length} items, ${esc(DATA.tiers[0].id)} to ${esc(DATA.tiers.at(-1).id)}.`, "Tap an item to see why it sits where it does.") +
+      `<div class="quick"><h4>What the letters mean</h4><ul>${DATA.tiers.map(t => `<li><b>${esc(t.id)}</b>: ${esc(t.means)}</li>`).join("")}</ul></div>
+      <div class="ladder">${DATA.tiers.map(t => `<div class="rung" style="--t:${t.color}"><b>${esc(t.id)}</b><div>${
+        DATA.items.filter(i => i.tier === t.id).map(i => `<button class="chip" data-open="${esc(i.id)}">${pic(i)}<span>${esc(i.name)}<br><small class="muted">${esc(i.category)}</small></span></button>`).join("") || '<span class="muted">Nothing here yet.</span>'
+      }</div></div>`).join("")}</div>`;
+  },
+  compare() {
+    const picks = state.cmp.map(byId).filter(Boolean);
+    const opts = sel => DATA.items.map(i => `<option value="${esc(i.id)}"${i.id === sel ? " selected" : ""}>${esc(i.name)}</option>`).join("");
+    const cell = f => picks.map(i => `<td>${f(i)}</td>`).join("");
+    return head("Compare", "Side by side.", "Pick two or three items. The rows line up so the difference is easy to see.") +
+      `<div class="controls" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${[0, 1, 2].map(n =>
+        `<label>Item ${n + 1}<select data-cmp="${n}"><option value="">(none)</option>${opts(state.cmp[n])}</select></label>`).join("")}</div>
+      <div class="tablewrap"><table><thead><tr><th></th>${picks.map(i => `<th><div class="row">${pic(i)}${esc(i.name)}</div></th>`).join("")}</tr></thead><tbody>
+      <tr><th>Rating</th>${cell(i => tierBadge(i.tier))}</tr>
+      <tr><th>Type</th>${cell(i => esc(i.category))}</tr>
+      ${DATA.specs.map(s => `<tr><th>${esc(s.label)}</th>${cell(i => esc(i.specs?.[s.key] ?? "Not checked"))}</tr>`).join("")}
+      <tr><th>Good</th>${cell(i => `<ul class="pro" style="margin:0;padding-left:18px">${i.pros.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`)}</tr>
+      <tr><th>Bad</th>${cell(i => `<ul class="con" style="margin:0;padding-left:18px">${i.cons.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`)}</tr>
+      <tr><th>Verdict</th>${cell(i => esc(i.summary))}</tr></tbody></table></div>`;
+  },
+  items() {
+    const q = state.q.toLowerCase();
+    const list = DATA.items.filter(i => (!state.cat || i.category === state.cat) && (!state.tier || i.tier === state.tier) &&
+      (!q || (i.name + " " + i.summary + " " + i.category).toLowerCase().includes(q)));
+    const sel = (id, label, all, vals, cur) => `<label>${label}<select id="${id}"><option value="">${all}</option>${vals.map(v => `<option${v === cur ? " selected" : ""}>${esc(v)}</option>`).join("")}</select></label>`;
+    return head("All items", `All ${DATA.items.length} items.`, "Tap one for the full card: specs, good, bad and sources.") +
+      `<div class="controls"><label>Search<input id="q" value="${esc(state.q)}" placeholder="Name or keyword"></label>
+      ${sel("fcat", "Type", "All types", cats, state.cat)}${sel("ftier", "Rating", "All ratings", DATA.tiers.map(t => t.id), state.tier)}</div>
+      <p class="muted">${list.length} of ${DATA.items.length} items</p><div class="grid">${list.map(itemCard).join("") || '<p class="muted">Nothing matches. Clear a filter.</p>'}</div>`;
+  },
+  reviewers() {
+    return head("Reviewers", "Who to trust.", "Where the ratings in this guide come from, and how much weight each one gets.") +
+      `<div class="grid">${DATA.reviewers.map(r => `<a class="card" href="${esc(r.url)}" target="_blank" rel="noopener"><div class="row"><span class="pic">${esc(r.name[0])}</span>
+      <div style="flex:1"><h3>${esc(r.name)}</h3><span class="tag">${esc(r.where)}</span> <span class="tag">Trust: ${esc(r.trust)}</span></div></div>
+      <p style="margin-top:10px">${esc(r.why)}</p></a>`).join("")}</div>`;
+  },
+  sources() {
+    const n = DATA.items.reduce((a, i) => a + (i.sources || []).length, 0);
+    const none = DATA.items.filter(i => !(i.sources || []).length).length;
+    const stat = (k, v) => `<div class="card"><span class="muted">${k}</span><div style="font:600 26px var(--serif)">${v}</div></div>`;
+    return head("Sources", "Where the facts come from.", DATA.about) +
+      `<div class="grid">${stat("Items", DATA.items.length)}${stat("Source links", n)}${stat("Items with no source", none)}${stat("Reviewers", DATA.reviewers.length)}</div>
+      <h2>Every source, by item</h2>${DATA.items.map(i => `<div class="src"><b style="color:#fff">${esc(i.name)}</b>${(i.sources || []).map(s =>
+        ` · <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a> (${esc(s.checked)})`).join("") || " · no source yet"}</div>`).join("")}`;
+  }
+};
+
+function openItem(id) {
+  const i = byId(id); if (!i) return;
+  $("#dlg").innerHTML = `<div class="row">${pic(i)}<div style="flex:1"><h2 style="margin:0">${esc(i.name)}</h2><span class="tag">${esc(i.category)}</span></div>${tierBadge(i.tier)}</div>
+    <p class="lead" style="margin-top:12px">${esc(i.summary)}</p>
+    <div class="tablewrap"><table style="min-width:0"><tbody>${DATA.specs.map(s => `<tr><th>${esc(s.label)}</th><td>${esc(i.specs?.[s.key] ?? "Not checked")}</td></tr>`).join("")}</tbody></table></div>
+    <div class="two" style="margin-top:14px"><div><h3>Good</h3><ul class="pro">${i.pros.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div>
+    <div><h3>Bad</h3><ul class="con">${i.cons.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div></div>
+    ${srcList(i.sources)}<div class="row" style="margin-top:14px"><button class="btn" data-close>Close</button>
+    <button class="btn" style="background:none;color:var(--ink);border-color:var(--line)" data-addcmp="${esc(i.id)}">Compare this</button></div>`;
+  $("#dlg").showModal();
+}
+
+function render() {
+  const page = (location.hash.slice(1) in views) ? location.hash.slice(1) : "home";
+  $("#nav").innerHTML = PAGES.map(([id, label]) => `<a href="#${id}"${id === page ? ' class="on"' : ""}>${label}</a>`).join("");
+  $("#main").innerHTML = views[page]() + (DATA.items.some(i => i.id.startsWith("sample-")) ? '<p class="sample">This page still shows sample data. Replace the DATA block at the top of the file.</p>' : "");
+  document.title = DATA.site.title + " · " + PAGES.find(p => p[0] === page)[1];
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-open],[data-close],[data-addcmp],[data-cat]"); if (!t) return;
+  if (t.dataset.open) openItem(t.dataset.open);
+  else if ("close" in t.dataset) $("#dlg").close();
+  else if (t.dataset.addcmp) { state.cmp = [t.dataset.addcmp, ...state.cmp.filter(x => x && x !== t.dataset.addcmp)].slice(0, 3); $("#dlg").close(); location.hash = "compare"; render(); }
+  else if (t.dataset.cat) { state.cat = t.dataset.cat; state.q = ""; state.tier = ""; }
+});
+document.addEventListener("input", e => {
+  if (e.target.id === "q") { state.q = e.target.value; render(); const q = $("#q"); q.focus(); q.setSelectionRange(q.value.length, q.value.length); }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "fcat") { state.cat = e.target.value; render(); }
+  if (e.target.id === "ftier") { state.tier = e.target.value; render(); }
+  if (e.target.dataset.cmp) { state.cmp[+e.target.dataset.cmp] = e.target.value; render(); }
+});
+document.addEventListener("submit", e => {
+  if (e.target.id === "homesearch") { e.preventDefault(); state.q = $("#hq").value; state.cat = ""; state.tier = ""; location.hash = "items"; render(); }
+});
+$("#dlg").addEventListener("click", e => { if (e.target === $("#dlg")) $("#dlg").close(); });
+window.addEventListener("hashchange", () => { render(); scrollTo(0, 0); });
+
+$("#brand").innerHTML = `${esc(DATA.site.title)}<small>${esc(DATA.site.subtitle)}</small>`;
+$("#updated").textContent = DATA.site.updated;
+$("#foot").textContent = "Built from the guide starter template. Ratings are opinions; specs and prices carry a source and a check date.";
+render();
+</script>
+</body>
+</html>
