@@ -1,6 +1,6 @@
 # Tokyo Ghoul: Break the Chains: org spreadsheet data pack
 
-Built 2026-11-17 from game data SEA 13368 (built 2026-11-12). Game data only: no player rosters and no spending records.
+Built 2026-11-18 from game data SEA 13368 (built 2026-11-12). Game data only: no player rosters and no spending records.
 
 ## What you get
 
@@ -25,6 +25,7 @@ Built 2026-11-17 from game data SEA 13368 (built 2026-11-12). Game data only: no
 | `10b_pull_rates_per_unit.csv` | Per-character pull rate on every banner (rate 0.00143 = 0.143%). | 5085 | Broken Chains data site (btc-web-863ee.web.app), read 2026-11-04: Gacha table reward_show |
 | `11_paid_packs_usd.csv` | Paid sign-ins and packs that carry a USD price in the event table. Dates are the original (older-server) run. | 56 | Broken Chains data site (btc-web-863ee.web.app), read 2026-11-04: Activity calendar table |
 | `12_diamond_economy.csv` | Diamond income by source, paid cards, VIP daily gifts, buy/skip verdicts, pull costs and Stronghold pay. Includes a NOT KNOWN YET list. | 45 | Org guide (xyukiterux.github.io/guides) economy data (as of 2026-11-04) |
+| `12b_exchange_shop_prices.csv` | Every price shown in the Exchange shops (Regular, Friendship Point, Crystal, Arena, Organization, Limit Crystal, plus the open rows of Real-Time Arena and VIP). Read from in-game screenshots. | 60 | Exchange screens of one of our accounts (level 74, low VIP), every tab scrolled to the end; pictures in app/dailies/map/shops |
 | `13_creator_meta_teams.csv` | Team screens from creator videos, Dec 2025 to Oct 2026, one row per team, with the video link at the exact second. | 33 | Creator YouTube videos, read card by card against the game portraits |
 | `14_game_modes.csv` | Every game mode with a short how-it-works. | 20 | Org guide (xyukiterux.github.io/guides) |
 | `15_boss_and_war_rules.csv` | Game rule text for World Boss, Org Boss, Weekly Challenge, Conquest and the Stronghold wars. Archived text: a live boss can override it, so read the boss info screen. | 68 | Game client tables (tkgbtc.com hero-data copy, 2026-10-28) (en.json rule text), audited 2026-11-02 |
