@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="robots" content="noai, noimageai, noarchive"><meta name="googlebot" content="noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Monday 2026: Desk Setup + Gear Picks</title>
+<style>
+:root{--bg:#0d0f14;--card:#161a22;--line:#262c38;--ink:#e8ebf1;--mute:#97a0b2;--acc:#7cc4ff;--deal:#4ade80;--warn:#fbbf24;--pick:#c084fc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{width:100%;padding:20px clamp(12px,3vw,40px) 120px}
+h1{font-size:clamp(22px,3vw,32px);margin:0 0 4px}
+.sub{color:var(--mute);margin:0 0 16px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px;font-size:13px;color:var(--mute)}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.t-deal{background:#14351f;color:var(--deal)}.t-typ{background:#2a2f3a;color:#c9d0dc}.t-chk{background:#3a2e10;color:var(--warn)}.t-pick{background:#2d1a45;color:var(--pick)}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+nav a{color:var(--ink);text-decoration:none;background:var(--card);border:1px solid var(--line);padding:5px 10px;border-radius:8px;font-size:13px}
+section{margin:0 0 26px}
+h2{font-size:19px;margin:0 0 4px}
+.why{color:var(--mute);margin:0 0 10px;font-size:14px;max-width:1100px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;cursor:pointer}
+.item.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.name{font-weight:650}
+.price{font-weight:700;font-size:17px;white-space:nowrap}
+.was{color:var(--mute);text-decoration:line-through;font-size:13px;margin-left:4px}
+.note{color:#c4cad6;font-size:13.5px}
+.links{display:flex;gap:10px;font-size:13px;margin-top:auto}
+.links a{color:var(--acc)}
+input[type=checkbox]{width:17px;height:17px;accent-color:var(--acc);flex:none;margin-top:3px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#0b0d12ee;border-top:1px solid var(--line);padding:10px clamp(12px,3vw,40px);display:flex;flex-wrap:wrap;gap:14px;align-items:center;backdrop-filter:blur(6px)}
+.bar b{font-size:20px}
+.bar button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.callout{background:#1b1622;border:1px solid #3b2a55;border-radius:12px;padding:12px 14px;margin:0 0 18px;max-width:1100px}
+.callout b{color:var(--pick)}
+footer{color:var(--mute);font-size:12.5px;margin-top:30px}
+footer a{color:var(--mute)}
+</style>
+</head>
+<body><main>
+<h1>Cyber Monday 2026: Desk Setup + Gear Picks</h1>
+<p class="sub">Researched Nov 27, 2026 (Black Friday). Cyber Monday is <b>Nov 30</b>, the last day for most codes. Tick items to build your cart, and the total updates at the bottom (it saves on this device).</p>
+<div class="legend">
+<span><span class="tag t-deal">DEAL</span> sale price reported by a news or deal site this week</span>
+<span><span class="tag t-typ">USUAL</span> normal price. No sale found, but already good value</span>
+<span><span class="tag t-chk">CHECK</span> price not confirmed. The number is an estimate</span>
+<span><span class="tag t-pick">PICK</span> my default choice. The others in a group are about as good, so it comes down to taste</span>
+</div>
+<div class="callout"><b>Honest note on quality:</b> the gaming headsets, IEMs, chargers and surge protectors come from reviewer picks (RTINGS, PC Gamer, Tom's Guide, Crinacle-based IEM guides). Cable trays and laptop stands are a weaker category, because most "best of" lists there are recycled affiliate pages. Read recent verified reviews before buying those.</div>
+<nav id="nav"></nav>
+<div id="cats"></div>
+<footer>
+<p>Prices change hourly during Cyber Week. Confirm the price, stock and coupon at checkout. "Find it" opens a Google Shopping search so you can compare stores.</p>
+<p>Sources: <span id="srcs"></span></p>
+</footer>
+</main>
+<div class="bar"><span>Cart: <b id="tot">$0</b></span><span id="cnt" style="color:var(--mute)"></span><button id="reset">Reset to my picks</button><button id="none">Clear all</button></div>
+<script>
+const S={
+pcg:["PC Gamer BF headsets","https://www.pcgamer.com/hardware/gaming-headsets/black-friday-gaming-headset-deals/"],
+pcgbest:["PC Gamer best headsets","https://www.pcgamer.com/best-gaming-headset/"],
+rt:["RTINGS gaming","https://www.rtings.com/headphones/reviews/best/by-usage/gaming"],
+tr:["TechRadar BF headphones","https://www.techradar.com/audio/wireless-headphones/the-best-black-friday-headphone-deals-2026-massive-savings-on-top-class-models-from-apple-bose-sony-and-more"],
+bb:["Best Buy headsets","https://www.bestbuy.com/discover/best-selling/best-selling-gaming-headsets/pcmcat230800050019"],
+iem:["Budget gaming IEMs 2026","https://mobileaudiophile.com/guide/top-x-under-y/best-budget-gaming-iems-2026/"],
+iem2:["Best budget IEMs 2026","https://chifiwire.com/guides/best-budget-iems-2026-complete-guide/"],
+hfg:["HiFiGo BF sale","https://hifigo.com/collections/sales"],
+lin:["Linsoul BFCM","https://www.linsoul.com/pages/linsoul-bfcm-sale-2026"],
+pcw:["PCWorld Amazon accessories","https://www.pcworld.com/article/3278025/best-amazon-black-friday-accessory-deals-2026.html"],
+giz:["Gizmochina UGREEN BF","https://www.gizmochina.com/2026/11/27/ugreen-black-friday-2026-deals/"],
+t95:["9to5Toys Amazon BF","https://9to5toys.com/2026/11/27/amazon-official-black-friday-sale-live-2026/"],
+dt:["Digital Trends chargers","https://www.digitaltrends.com/computing/i-found-the-best-early-black-friday-deals-on-top-rated-chargers-and-power-banks/"],
+tg:["Tom's Guide surge protectors","https://www.tomsguide.com/best-picks/best-surge-protector"],
+pop:["PopSci cable management","https://www.popsci.com/gear/best-cable-management-for-desks/"],
+popl:["PopSci laptop stands","https://www.popsci.com/story/reviews/best-laptop-stand-for-desk/"],
+gov:["Govee BF guide","https://us.govee.com/blogs/product-review-blog/black-friday-lighting-deals-guide"],
+hue:["Philips Hue BFCM","https://www.philips-hue.com/products/promotions/black-friday-cyber-monday-deals"],
+nano:["TechRadar Nanoleaf","https://www.techradar.com/seasonal-sales/nanoleafs-light-panels-gave-my-gaming-desk-a-much-needed-glow-up-and-theyre-at-a-record-low-price-for-black-friday"],
+th:["Tom's Hardware RAM","https://www.tomshardware.com/pc-components/ram/best-ram-memory-deals-ddr5-ddr4-2026"],
+ne:["Newegg 64GB CL30","https://www.newegg.com/p/pl?d=ddr5+6000+cl30+64gb"],
+ah:["AgentHive RAM tracker","https://agenthiveinc.com/ram-deals/"],
+sc:["StyleCaster Abercrombie","https://stylecaster.com/fashion/shopping-guides/1234973411/when-is-abercrombie-black-friday-sale-2026/"],
+hol:["Hollister BF","https://dealsinsiders.com/hollister-black-friday-deals/"],
+kcra:["KCRA BF guide (Nike)","https://www.kcra.com/article/black-friday-2026-deals-guide/74541635"],
+fb:["Forbes BF (New Balance)","https://www.forbes.com/sites/forbes-personal-shopper/2026/11/27/best-black-friday-deals/"],
+sd:["Slickdeals Joe's NB","https://slickdeals.net/f/17923755-joe-s-new-balance-outlet-early-black-friday-sale-extra-30-off-select-new-balance-shoes-clothing-accessories-free-shipping-w-amazon-prime"],
+lev:["Levi's BF","https://www.levi.com/US/en_US/black-friday-deals"],
+pac:["PacSun (Rakuten)","https://www.rakuten.com/black-friday/store/pacsun"],
+mus:["Musinsa (Rakuten)","https://www.rakuten.com/black-friday/store/musinsa"],
+uq:["Uniqlo US offers","https://www.uniqlo.com/us/en/men/limited-time-offers"],
+ad:["adidas BF","https://www.adidas.com/us/black_friday"],
+sl:["SneakerLens adidas","https://www.sneakerlens.com/black-friday-adidas-deals/"],
+vans:["Vans cyber deals","https://www.vans.com/en-us/cyber-deals"],
+tgapp:["Tom's Guide apparel","https://www.tomsguide.com/live/news/black-friday-best-apparel-deals-nike-carhartt-patagonia-lululemon-more"]
+};
+// k: deal|typ|chk ; p: price used in total ; w: was
+const C=[
+{id:"head",t:"🎧 Gaming headsets — main tier (~$70–150, wireless)",why:"These beat the Sony XM5 for gaming: a boom mic for Valorant and Discord, a low-latency 2.4 GHz dongle (Bluetooth lags), and tuning that makes footsteps clear. All six are close in quality, so pick on comfort and looks.",items:[
+{n:"Razer BlackShark V3",p:99.99,w:149.99,k:"deal",pick:1,d:"PC Gamer's #1 gaming headset of 2026: great audio, low latency, fair price. Esports-style mic.",s:"pcg"},
+{n:"SteelSeries Arctis Nova 5 Wireless",p:99.99,w:149.99,k:"deal",d:"2.4 GHz + Bluetooth at the same time (game + phone). Companion app with 100+ game EQ presets. Very light.",s:"pcg"},
+{n:"HyperX Cloud III S Wireless",p:99.69,w:179.99,k:"deal",d:"Biggest % off in this tier. HyperX comfort (memory foam), very long battery.",s:"pcg"},
+{n:"SteelSeries Arctis Nova 3 Wireless",p:69.99,w:109.99,k:"deal",d:"Cheapest good wireless option. Fine sound, a step down in build from the Nova 5.",s:"pcg"},
+{n:"HyperX Cloud III (wired)",p:39,w:99.99,k:"deal",d:"Wired, so zero latency and no charging. The best-value headset here if you don't mind the cable (Walmart price).",s:"pcg"},
+{n:"Turtle Beach Stealth 700 Gen 3",p:149,w:199.99,k:"chk",d:"Strong mic and two wireless connections. $149 was last year's sale price, so check it.",s:"pcg"}
+]},
+{id:"headp",t:"🎧 Gaming headsets — premium tier (~$160–330)",why:"Only if you want the top level. These are all near the best that RTINGS and PC Gamer have tested.",items:[
+{n:"SteelSeries Arctis Nova 7 Gen 2",p:159.99,w:199.99,k:"deal",d:"The sweet spot of the premium tier. Very comfortable, game + phone audio together.",s:"pcg"},
+{n:"Razer BlackShark V3 Pro",p:199.99,w:249.99,k:"deal",d:"Pro version of PC Gamer's #1: ANC, a better mic, HyperSpeed wireless.",s:"pcg"},
+{n:"SteelSeries Arctis Nova Pro Wireless",p:229.99,w:299.99,k:"deal",d:"Hot-swap batteries (never dies) plus a base station with a volume knob. The Best Buy price is the lowest.",s:"pcg"},
+{n:"Sony INZONE H9",p:198,w:329.99,k:"chk",d:"Best Buy shows $131.99 off. ANC, light, great for long sessions.",s:"bb"},
+{n:"Audeze Maxwell 2",p:299,w:null,k:"chk",d:"RTINGS' best gaming headset tested; planar drivers = audiophile sound. No 2026 deal found; price is an estimate.",s:"rt"}
+]},
+{id:"iem",t:"🎶 IEMs (in-ear monitors)",why:"Cheap for the sound you get, and these are basically full price already. ⚠️ IEMs have no mic, so pair them with a desk mic or a boom-mic cable for Discord and Valorant. Best for music and solo games.",items:[
+{n:"Truthear × Crinacle Zero:RED",p:55,w:null,k:"typ",pick:1,d:"Most cited sub-$100 gaming IEM. Good bass with clear footsteps.",s:"iem"},
+{n:"Truthear Hexa",p:79,w:null,k:"typ",d:"Crinacle's top pick at this price: most balanced and detailed.",s:"iem2"},
+{n:"Moondrop Aria 2",p:89,w:null,k:"typ",d:"Most comfortable under $100, warm all-rounder.",s:"iem2"},
+{n:"Simgot EW300",p:65,w:null,k:"typ",d:"Hybrid drivers, strong positional imaging for games.",s:"iem"},
+{n:"DUNU Subsurge",p:53.99,w:59.99,k:"deal",d:"Bass-focused 'gaming IEM'. Small HiFiGo sale.",s:"hfg"},
+{n:"Moondrop Chu II",p:20,w:null,k:"typ",d:"$20 starter set, great to try IEMs before spending more.",s:"iem2"},
+{n:"Truthear Gate (with inline mic)",p:20,w:null,k:"typ",d:"Has a mic built in. The budget gaming choice.",s:"iem"},
+{n:"Bonus: Sony WH-1000XM5 (music/travel, not gaming)",p:169.99,w:198,k:"deal",d:"Great ANC for music and travel. Bluetooth lag makes them poor for competitive games.",s:"tr"}
+]},
+{id:"chg",t:"⚡ Fast chargers / desk charging stations",why:"One station on the desk charges your phone, laptop, earbuds and controller. All are GaN (small, cool, fast).",items:[
+{n:"Anker Prime 200W 6-port",p:55.99,w:79.99,k:"deal",pick:1,d:"Lowest price all year. 6 ports, 200 W total, will fast-charge a laptop and phone together.",s:"pcw"},
+{n:"UGREEN Nexode Pro 160W",p:56.99,w:89.99,k:"deal",d:"Slim, premium look. 160 W.",s:"giz"},
+{n:"Anker 6-in-1 160W station",p:64,w:80,k:"deal",d:"Includes AC outlets, so it doubles as a mini power strip.",s:"dt"},
+{n:"Anker 150W slim USB-C station",p:60,w:null,k:"deal",d:"Flat 'charging bar' style, looks clean on a desk.",s:"t95"},
+{n:"Baseus 100W 3-port",p:34.99,w:49.99,k:"deal",d:"Budget pick if you only charge 2–3 devices.",s:"dt"},
+{n:"Anker Prime 250W 6-port",p:100,w:150,k:"chk",d:"Most power. Was 33% off in October. Price is an estimate.",s:"dt"}
+]},
+{id:"hub",t:"🧩 The \"middle of the desk\" gadget (hubs / docks)",why:"What you see on setups is usually a desk hub or dock: one box with USB, card readers and charging, so cables run to one spot. On a desktop PC it also puts USB ports on the desk when the tower is far away.",items:[
+{n:"Anker 13-in-1 docking station",p:99.99,w:149.99,k:"deal",pick:1,d:"New low. The most ports. Can be a desk hub for the laptop rack too.",s:"pcw"},
+{n:"Anker 10-in-1 smart display hub",p:75,w:null,k:"deal",d:"Has a small status screen. The 'cool gadget' look.",s:"t95"},
+{n:"Anker Nano 13-in-1 dock",p:110,w:150,k:"deal",d:"Compact version with the same port count.",s:"dt"},
+{n:"Powered USB 3 hub, 7-port (any brand)",p:25,w:null,k:"chk",d:"Cheapest way to put USB on the desk when the PC moves away. Needs its own power brick.",s:"pop"},
+{n:"Elgato Stream Deck (macro keys)",p:130,w:null,k:"chk",d:"LCD buttons for mute, OBS, Discord and macros. Very popular on setups. No deal confirmed.",s:"pcg"}
+]},
+{id:"surge",t:"🔌 Surge protectors",why:"Worth it for an expensive gaming PC. Look for 2000+ joules and a long cord.",items:[
+{n:"Anker 351 Power Strip (12 outlets + 3 USB, 2100 J)",p:22.99,w:32.99,k:"typ",pick:1,d:"Tom's Guide best overall. A $200K equipment warranty.",s:"tg"},
+{n:"Belkin 12-Outlet Pivot-Plug",p:35,w:null,k:"chk",d:"Rotating outlets fit big power bricks. ~3,940–4,320 J. Cord only 6 ft.",s:"tg"},
+{n:"Anker 2000J flat-plug strip with USB-C",p:30,w:null,k:"chk",d:"Flat plug fits behind a desk. 20 W USB-C.",s:"tg"},
+{n:"Anker 525 7-in-1 USB-C power strip",p:36,w:60,k:"chk",d:"Desk-top style with USB-C charging built in.",s:"tg"},
+{n:"Tripp Lite TLP1208TELTV",p:30,w:null,k:"chk",d:"Long-trusted brand, ~2,880 J, long cords available.",s:"tg"}
+]},
+{id:"cable",t:"🧵 Cable management (all cables in one hidden spot)",why:"A tray under the desk holds the surge protector and bricks. Straps and a sleeve bundle the cables that run down to the PC. Prices are estimates.",items:[
+{n:"Litwaro no-drill under-desk tray",p:30,w:null,k:"chk",pick:1,d:"Most-recommended. Clamps on, no screws, ~15 lb capacity.",s:"pop"},
+{n:"Mzmaxy 25\" tray",p:28,w:null,k:"chk",d:"Longer tray. Fits a full power strip plus bricks.",s:"pop"},
+{n:"Scanfield 17\" (2-pack, no drill)",p:30,w:null,k:"chk",d:"Two short trays for left and right sides.",s:"pop"},
+{n:"REFLYING steel clamp tray",p:35,w:null,k:"chk",d:"Steel, for heavy bricks.",s:"pop"},
+{n:"Univivi 36\" fabric tray",p:30,w:null,k:"chk",d:"Wide mesh basket, clamp or screw mount.",s:"pop"},
+{n:"Velcro cable ties + zipper cable sleeve kit",p:15,w:null,k:"chk",pick:1,d:"Needed with any tray. Bundles everything into one neat line.",s:"pop"}
+]},
+{id:"long",t:"📏 Long cables (to move the PC off to the side)",why:"Moving the tower means every cable must reach: power, display, USB and Ethernet. Measure first and add 2 ft. Past ~15 ft, display cables need to be 'active' or fiber.",items:[
+{n:"10 ft PC power cord (IEC C13, 14/16 AWG)",p:12,w:null,k:"chk",pick:1,d:"Fixes the short power cord. Standard plug, any brand.",s:"pop"},
+{n:"10 ft DisplayPort 2.1 cable (VESA certified)",p:22,w:null,k:"chk",pick:1,d:"One per monitor. Buy 'DP80' or 'VESA certified' for high refresh rates.",s:"pop"},
+{n:"10 ft HDMI 2.1 Ultra High Speed cable",p:15,w:null,k:"chk",d:"Use this instead if a monitor runs on HDMI.",s:"pop"},
+{n:"Active USB 3 extension, 16 ft",p:18,w:null,k:"chk",pick:1,d:"Runs to the desk hub so mouse and keyboard stay wired.",s:"pop"},
+{n:"Fiber DisplayPort cable, 25–33 ft",p:45,w:null,k:"chk",d:"Only if the PC goes very far away.",s:"pop"}
+]},
+{id:"rack",t:"💻 Laptop rack (for auto-farming)",why:"A vertical stand keeps the laptop upright and saves desk space. ⚠️ Gaming laptops run hot, so choose one with an open bottom and keep vents uncovered. Running the emulator farm here also frees ~7 GB of RAM on the PC.",items:[
+{n:"OMOTON single-slot vertical stand",p:20,w:null,k:"chk",pick:1,d:"Most-recommended. Adjustable width, lifetime warranty.",s:"popl"},
+{n:"OMOTON dual-slot stand",p:28,w:null,k:"chk",d:"Holds the laptop plus a tablet or second device.",s:"popl"},
+{n:"UGREEN vertical stand",p:20,w:null,k:"chk",d:"Best-value pick, ~7,800 reviews at 4.7★.",s:"popl"},
+{n:"Satechi aluminum vertical stand",p:40,w:null,k:"chk",d:"PopSci's best vertical stand. Premium metal look.",s:"popl"},
+{n:"Laptop cooling pad (flat) instead",p:30,w:null,k:"chk",d:"If the laptop runs a game for hours, a fan pad cools better than a vertical stand.",s:"popl"}
+]},
+{id:"light",t:"🌈 Lighting",why:"Govee is up to 53% off through Nov 30. Hue is 30% off when you buy 2+ items, through Dec 1. Pick one ecosystem so one app controls everything.",items:[
+{n:"Govee LED strip (behind desk / monitor)",p:30,w:null,k:"chk",pick:1,d:"Cheapest big upgrade. Strips have been seen at $10–40 on sale.",s:"gov"},
+{n:"Govee light bars / monitor light bar",p:50,w:null,k:"chk",d:"The two bars beside the monitor look. Check the Govee BF page.",s:"gov"},
+{n:"Govee Uplighter floor lamp",p:125.99,w:179.99,k:"deal",d:"Corner glow, 30% off.",s:"gov"},
+{n:"Philips Hue Flux strip 16 ft",p:109.99,w:null,k:"deal",d:"Premium colors. Extra 30% off with 2+ Hue items.",s:"hue"},
+{n:"Nanoleaf shapes / light panels",p:120,w:null,k:"chk",d:"Wall panels for an anime or gamer wall. 'Record low' reported, but undated.",s:"nano"},
+{n:"Lepro RGB strip (budget)",p:15,w:null,k:"chk",d:"No smart-home extras, just cheap color.",s:"gov"}
+]},
+{id:"ram",t:"🧠 RAM 64 GB (2×32 GB DDR5-6000): recommended to WAIT",why:"DDR5 prices are near record highs this year, so even 'deals' are about $900. Don't add 2 more sticks to a 2-stick kit, because 4 sticks on AM5 usually run slower. Free fix first: move the emulator farm to the laptop. These are unticked by default and listed for reference.",items:[
+{n:"Corsair Vengeance 64GB DDR5-6000",p:889,w:1039.99,k:"deal",d:"Lowest found. Newegg, plus a $100 promo code per Tom's Hardware.",s:"th"},
+{n:"Klevv Bolt V 64GB DDR5-6000 CL30",p:949.99,w:1079.99,k:"deal",d:"$130 off with code BFF396 (Newegg).",s:"ne"},
+{n:"Corsair Vengeance 64GB DDR5-6000 CL40",p:989.99,w:null,k:"deal",d:"Slower CL40 timings.",s:"ah"},
+{n:"G.Skill Trident Z5 Neo RGB 64GB CL30",p:1279.99,w:null,k:"typ",d:"Top AMD-tuned kit, way overpriced right now.",s:"ah"}
+]},
+{id:"top",t:"👕 Clothes: hoodies, baggy jeans, basics",why:"Brand-level deals. The price is an estimated per-item cost after the discount. Abercrombie and Hollister are one company and both are running sales.",items:[
+{n:"Abercrombie hoodie (25–50% off + code CYBERAF −15%)",p:45,w:80,k:"deal",pick:1,d:"Sale runs through Nov 30. Codes exclude clearance and third-party brands.",s:"sc"},
+{n:"Hollister oversized hoodie (~30% off)",p:35,w:50,k:"chk",d:"Sources disagree on 2026 %. Check at checkout.",s:"hol"},
+{n:"Hollister / Abercrombie baggy or loose jeans",p:45,w:80,k:"deal",pick:1,d:"Look for the 'baggy' and 'loose' fits.",s:"sc"},
+{n:"Levi's 578 Baggy jeans (up to 50% off)",p:45,w:80,k:"chk",d:"Up to 50% off is confirmed on Levi's EU sites. Check the US site.",s:"lev"},
+{n:"PacSun vintage-wash zip hoodie",p:59.95,w:null,k:"typ",d:"Skater look. PacSun carries baggy denim too.",s:"pac"},
+{n:"Musinsa Standard (Korean oversized basics)",p:35,w:null,k:"chk",d:"Korean label with a huge winter BF event (up to 80% off in KR). US-shipping prices vary.",s:"mus"},
+{n:"Uniqlo (U line, wide-fit pants, HEATTECH)",p:30,w:null,k:"chk",d:"Japanese oversized basics. Check the US app on Cyber Monday.",s:"uq"},
+{n:"Carhartt Ripstop cargo pants",p:22,w:35,k:"chk",d:"Workwear-skater look. Amazon price, undated.",s:"tgapp"},
+{n:"Belt + socks + underwear multipacks (A&F / Hollister)",p:40,w:null,k:"chk",pick:1,d:"Add these to an A&F order so the code covers them too.",s:"sc"}
+]},
+{id:"shoe",t:"👟 Shoes",why:"Nike and New Balance have the clearest codes. adidas Sambas rarely drop, so only buy them if they're actually marked down.",items:[
+{n:"Nike Air Force 1 (up to 50% + code BFRIDAY −25%)",p:85,w:115,k:"deal",pick:1,d:"BFRIDAY covers select AF1 styles. Not every colorway qualifies.",s:"kcra"},
+{n:"New Balance (550 / 9060 / 574): code NOVEMBER, up to 30%",p:90,w:130,k:"deal",d:"Sources report 30–40% off select styles.",s:"fb"},
+{n:"Joe's New Balance Outlet: extra 30%",p:70,w:110,k:"deal",d:"Usually the cheapest place for NB.",s:"sd"},
+{n:"adidas Campus 00s / Samba",p:80,w:100,k:"chk",d:"Up to 60% off in the UK. The US Samba has rarely dropped from ~$100.",s:"sl"},
+{n:"Vans Old Skool / Knu Skool",p:55,w:75,k:"chk",d:"Skater pick. Vans says deals are coming. No % confirmed.",s:"vans"}
+]}
+];
+const key="cm26cart";
+const defaults=()=>{const o={};C.forEach(c=>c.items.forEach((it,i)=>{if(it.pick)o[c.id+i]=1}));return o};
+let cart=JSON.parse(localStorage.getItem(key)||"null")||defaults();
+const fmt=n=>"$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const tagOf={deal:'<span class="tag t-deal">DEAL</span>',typ:'<span class="tag t-typ">USUAL</span>',chk:'<span class="tag t-chk">CHECK</span>'};
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function render(){
+ document.getElementById("nav").innerHTML=C.map(c=>`<a href="#${c.id}">${c.t.split("(")[0].split(":")[0]}</a>`).join("");
+ document.getElementById("cats").innerHTML=C.map(c=>`<section id="${c.id}"><h2>${c.t}</h2><p class="why">${c.why}</p><div class="grid">${c.items.map((it,i)=>{const k=c.id+i,src=S[it.s];return `<label class="item ${cart[k]?"on":""}" data-k="${k}"><div class="top"><span style="display:flex;gap:8px"><input type="checkbox" ${cart[k]?"checked":""}><span class="name">${esc(it.n)}</span></span><span class="price">${it.k==="chk"?"~":""}${fmt(it.p)}${it.w?`<span class="was">${fmt(it.w)}</span>`:""}</span></div><div>${tagOf[it.k]} ${it.pick?'<span class="tag t-pick">PICK</span>':""}</div><div class="note">${esc(it.d)}</div><div class="links"><a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=shop&q=${encodeURIComponent(it.n.split("(")[0])}">Find it</a>${src?`<a target="_blank" rel="noopener" href="${src[1]}">Source</a>`:""}</div></label>`}).join("")}</div></section>`).join("");
+ document.getElementById("srcs").innerHTML=Object.values(S).map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`).join(" · ");
+ total();
+}
+function total(){let t=0,n=0,e=0;C.forEach(c=>c.items.forEach((it,i)=>{if(cart[c.id+i]){t+=it.p;n++;if(it.k==="chk")e++}}));document.getElementById("tot").textContent=fmt(t);document.getElementById("cnt").textContent=`${n} items${e?` · ${e} with estimated prices`:""}`;localStorage.setItem(key,JSON.stringify(cart))}
+document.addEventListener("change",e=>{const l=e.target.closest(".item");if(!l)return;const k=l.dataset.k;if(e.target.checked)cart[k]=1;else delete cart[k];l.classList.toggle("on",!!cart[k]);total()});
+document.getElementById("reset").onclick=()=>{cart=defaults();render()};
+document.getElementById("none").onclick=()=>{cart={};render()};
+render();
+</script>
+</body>
+</html>
